@@ -1,7 +1,3 @@
-<style>
-  h3 { margin-top: 2.5em; padding-top: 0.5em; border-top: 1px solid #eee; }
-</style>
-
 # Crafted-Prompt Development (CPD)
 
 > A methodology for building software with coding agents.
@@ -49,6 +45,8 @@ possibilities, challenge assumptions, and let the problem space breathe.
 The first part of the process is organizing thoughts and understanding
 the goals — not committing to a structure.
 
+---
+
 ### 2. Living context documents — patterns that survive across prompts
 
 A crafted prompt describes the problem and how it should be addressed, but
@@ -61,12 +59,16 @@ These documents carry the patterns, conventions, and accumulated context
 that no single prompt can hold. They ensure consistency across the
 lifecycle of executions. Keep them updated.
 
+---
+
 ### 3. Minimal ceremony by default
 
 Add weight only when risk justifies it. Most work doesn't need formal
 requirements matrices, architecture diagrams, or exhaustive risk analyses.
 The default is lightweight — a clear intent, a defined scope, and falsifiable
 ACs. Heavy ceremony is a deliberate escalation, not the baseline.
+
+---
 
 ### 4. Size-aware routing — smallest artifact first
 
@@ -75,12 +77,16 @@ with 16 acceptance criteria. A vague idea does not need an implementation plan.
 When in doubt, choose the smallest artifact that fits. Forcing large ceremony
 onto small work is more damaging than missing ceremony on large work.
 
+---
+
 ### 5. Promotion over premature ceremony
 
 Start small, grow later. A quick idea can become a prompt. A small fix can
 become a full decomposed plan. The path from light to heavy is one-way and
 validated — you never need to know the full scope upfront. Don't force a large
 artifact onto work that doesn't yet need it.
+
+---
 
 ### 6. The prompt is the primary artifact — and it survives its execution
 
@@ -103,6 +109,8 @@ survives the execution lifecycle and grows with it:
 After planning, the prompt is the single place to look for where the work
 stands — done, in flight, deferred, or learned.
 
+---
+
 ### 7. Compose, groom, review — then execute
 
 A prompt is not a chat message. Before it goes to execution, it goes through
@@ -118,6 +126,8 @@ a deliberate craft cycle:
 Once the prompt passes review, it goes to execution. Review of the **executed
 code** is a separate discipline — see principle 13.
 
+---
+
 ### 8. Prompts define intent, not implementation
 
 A CPD prompt defines the **intent**, the **problem**, the **scope** (including
@@ -131,6 +141,8 @@ discovers a better path. When it does deviate, the note lives on the
 prompt itself — part of the audit trail (principle 6) and forward-feeding into
 future prompt crafting (principle 12).
 
+---
+
 ### 9. Verification is auditable, not aspirational
 
 Acceptance criteria answer "did we solve the problem?" rather than "did we
@@ -142,12 +154,16 @@ Evidence is recorded as commands and exit codes, not narrative descriptions.
 "The tests pass" is a claim. `cargo test -p foo -- exit 0` is evidence.
 Bypass is recorded as explicit debt.
 
+---
+
 ### 10. Scope-down visibility — flag partial scope loudly
 
 When shipping partial scope, declare what was deferred. A prompt marked "done"
 that silently ships 60% of the intended scope is a broken contract. The
 reviewer needs to see a per-AC checklist of what was shipped and what remains.
 Partial scope is legitimate; hidden scope is not.
+
+---
 
 ### 11. Green tests don't imply correct behavior
 
@@ -156,6 +172,8 @@ Review must independently try to break the change — different inputs, edge
 cases, adversarial paths. A review that only checks "do tests pass?" is a smoke
 test, not a review. Multiple review passes with different mental frames
 (spec compliance, edge cases, empirical) surface uncorrelated bugs.
+
+---
 
 ### 12. Agent discoveries feed forward to future prompt crafting
 
@@ -166,6 +184,8 @@ forward-feeds into future prompt crafting.
 Distinct from principle 14: #12 captures **agent** discoveries as notes that
 improve the craft process; #14 turns **human-validated** tweaks into follow-up
 crafted prompts.
+
+---
 
 ### 13. Code review by agents is non-negotiable
 
@@ -188,6 +208,8 @@ and judgment calls the agents can't make — not on auditing every diff.
 Humans may request changes; they may also defer to clean agent reviews.
 
 Code review by agents is mandatory. Code review by humans is an extra.
+
+---
 
 ### 14. Human validation and incremental refinement
 
@@ -292,6 +314,8 @@ flowchart TD
 | 11. Document (coord) | Capture lessons learned, document guidance deviations, record evidence. |
 | 12. Hand off (coord) | Mark the prompt complete and closed. Archive the results or prepare for the next prompt cycle. The human validates the outcome and decides whether to accept, revise, or refine via a follow-up crafted prompt (see principle 14). |
 
+---
+
 ### The review loop (stages 8-9-10)
 
 Stages 8 (External review), 9 (Remediate), and 10 (Re-review) form an
@@ -299,6 +323,8 @@ Stages 8 (External review), 9 (Remediate), and 10 (Re-review) form an
 a stage 10 that finds new findings returns to stage 9 (Remediate) for
 another pass. The coordinator controls the gate: only the coordinator
 decides when the loop exits.
+
+---
 
 ### Two-round review
 
@@ -352,6 +378,8 @@ the quality of the review.
 **Owns stages:** 0 (Discover), 1 (Draft), 2 (Groom), 3 (Specify), 4 (Approve),
 8 (External review), 10 (Re-review), 11 (Document), 12 (Hand off).
 
+---
+
 ### Runner (executor + fixer)
 
 The runner **executes prompts and fixes findings**. It does not plan new work
@@ -368,6 +396,8 @@ or evaluate its own output as the final word.
 
 **Owns stages:** 5 (Claim & execute), 6 (Self-review), 7 (Complete),
 9 (Remediate).
+
+---
 
 ### Responsibility Venn
 
@@ -411,6 +441,8 @@ flowchart TD
 - 🔵 **Blue** = Coordinator-only
 - 🟣 **Purple** = Shared across both agents
 - 🟢 **Green** = Runner-only
+
+---
 
 ### Why two agents?
 
