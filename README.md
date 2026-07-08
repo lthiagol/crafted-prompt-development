@@ -1,9 +1,30 @@
+<style>
+  h3 { margin-top: 2.5em; padding-top: 0.5em; border-top: 1px solid #eee; }
+</style>
+
 # Crafted-Prompt Development (CPD)
 
 > A methodology for building software with coding agents.
 
 The core artifact is the **crafted prompt** — a structured, reviewed,
 agent-friendly brief that an agent consumes and executes.
+
+## Contents
+
+- [Why CPD](#why-cpd)
+- [Principles](#principles)
+- [What CPD does not replace](#what-cpd-does-not-replace)
+- [The Flow](#the-flow)
+  - [The 13-stage timeline](#the-13-stage-timeline)
+  - [The review loop](#the-review-loop-stages-8-9-10)
+  - [Two-round review](#two-round-review)
+- [Roles](#roles)
+  - [Coordinator](#coordinator-planner--reviewer)
+  - [Runner](#runner-executor--fixer)
+  - [Responsibility Venn](#responsibility-venn)
+  - [Why two agents?](#why-two-agents)
+- [How the flow maps to CPD principles](#how-the-flow-maps-to-cpd-principles)
+- [License](#license)
 
 ---
 
