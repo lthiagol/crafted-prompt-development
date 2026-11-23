@@ -18,7 +18,7 @@ can run fresh-context agents and hand off files can implement it (see
 ## The loop
 
 ```mermaid
-flowchart LR
+flowchart TD
     D[Discover] --> B[Brief] --> A{Human approves}
     A --> Bu[Build] --> G[Gate] --> R[Review]
     R -->|findings| F[Fix] --> G
