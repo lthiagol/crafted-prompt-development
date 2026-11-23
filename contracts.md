@@ -1,65 +1,46 @@
 # Contracts
 
-The four artifacts that move between roles. Field names are suggestions;
-the content is required.
+The artifacts that move between roles. Fill-in versions are in
+[templates/](templates/).
 
-## Brief (orchestrator → builder)
+| Artifact | From → to | Template |
+|---|---|---|
+| Brief | orchestrator → builder | [brief.md](templates/brief.md) |
+| Report | builder → orchestrator, reviewer | [report.md](templates/report.md) |
+| Review | reviewer → orchestrator | [review.md](templates/review.md) |
+| Builder rules | read by every builder | [builder-rules.md](templates/builder-rules.md) |
+| Review rules | read by every reviewer | [review-rules.md](templates/review-rules.md) |
 
-```markdown
-## Unit <id> · <title>
+Field names are suggestions; the content is required.
 
-**Done when:** <one observable sentence>
+## Brief
 
-**Acceptance criteria**
-- [ ] AC1: <check> — verify: `<command>` (or the exact manual check)
-- [ ] AC2: …
+Done-when, ACs each with a verification, scope, out of scope, docs to read,
+decisions of record, optional guidance, report path. See
+[briefing.md](briefing.md).
 
-**Scope:** <files/modules it may touch>
-**Out of scope:** <what it must not do, even if tempting>
-**Read first:** <docs to read: link them, don't paste them>
-**Decisions of record:** <choices already made; don't revisit>
-**Guidance:** <optional steps; follow them or deviate and say why in the report>
+## Report
 
-REPORT=<path>
-```
+Per AC: status and evidence (command → exit code). Files touched, tests added
+and whether they fail without the change, gate result, deviations, open
+questions. Always written, also when the builder fails or stops early.
 
-## Report (builder → orchestrator, reviewer)
+## Review
 
-```markdown
-| AC | Status | Evidence |
-|----|--------|----------|
-| AC1 | done | `<command>` → exit 0 |
-| AC2 | not done | <why> |
+Per finding: severity, location, defect, concrete failing scenario, fix, and
+the decision needed, if any. The last line is a machine-parseable verdict:
+`VERDICT: CLEAN` or `VERDICT: FINDINGS <n>`. A review without a verdict line
+is not finished.
 
-Files touched: …
-Tests added: <test> fails without the change: yes/no/not provable
-Gate: `<gate command>` → exit <n>
-Deviations from guidance: …
-Open questions: <question + recommendation>  ← builders never ask interactively
-```
+## Rules files
 
-The report is always written, also when the builder fails or stops early.
+Copied into each run's round folder and filled in with the gate command and
+the project's own rules. They hold what applies to every unit; briefs hold
+what applies to one.
 
-## Review (reviewer → orchestrator)
+## Record
 
-```markdown
-## D1 [high|medium|low] <title>
-- where: path:line
-- defect: one sentence
-- scenario: concrete input or state → wrong result
-- fix: what a correct fix looks like
-- decision needed: <only if outside the docs; options + recommendation>
-
-VERDICT: CLEAN | VERDICT: FINDINGS <n>
-```
-
-The verdict is the last line, in a machine-parseable form. A review without a
-verdict line is not finished.
-
-## Record (orchestrator → project)
-
-Round files (briefs, reports, reviews) can be temporary. What must survive goes
-into the project:
+Round files can be temporary. What must survive goes into the project:
 
 - **Commit message**: what changed and why; ACs deferred, if any.
 - **Plan / state file**: unit status, deferred scope, follow-ups.

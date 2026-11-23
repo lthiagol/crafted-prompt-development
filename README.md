@@ -95,6 +95,7 @@ Move a unit up a tier when it surprises you. Never move it down mid-flight.
 | File | Covers |
 |---|---|
 | [contracts.md](contracts.md) | Required fields of brief, report, review and record |
+| [templates/](templates/) | Fill-in brief, report, review, builder rules, review rules |
 | [briefing.md](briefing.md) | How to write a brief an agent can execute |
 | [verifying.md](verifying.md) | How to review, triage and close a unit |
 | [harness.md](harness.md) | What an implementation must provide; known failure modes |
@@ -104,5 +105,4 @@ evidence from real runs (see [verifying.md](verifying.md#learn-from-runs)).
 
 ## License
 
-Shared as a reference for the agentic-coding community. Use it, adapt it,
-evolve it.
+[MIT](LICENSE)
